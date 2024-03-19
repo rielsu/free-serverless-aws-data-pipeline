@@ -83,3 +83,39 @@ Datetime data is also carefully managed in our application. All datetime data is
 Idempotency is a key concept in the design of reliable APIs. An operation is said to be idempotent if making multiple identical requests has the same effect as making a single request.
 
 In our application, the `POST /upload` endpoint is designed to be idempotent. If you upload the same CSV file multiple times, the system will recognize that the data has already been processed and will not duplicate it. This ensures that the system remains in a consistent state even if the upload operation is repeated.
+
+
+## Testing the API with Postman
+
+Postman is a popular tool for testing APIs. Here's how you can use it to test the `https://yqpmajftzf.execute-api.us-east-2.amazonaws.com/prod/upload` endpoint:
+
+1. Download and install Postman from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
+
+2. Open Postman and click on the `+` button to create a new tab.
+
+3. In the new tab, select `POST` from the dropdown list of HTTP methods.
+
+4. Enter the URL `https://yqpmajftzf.execute-api.us-east-2.amazonaws.com/prod/upload` into the URL field.
+
+5. Below the URL field, click on the `Body` tab.
+
+6. Select the `form-data` option.
+
+7. In the `Key` field, enter `file`. In the `Value` field, click on the `Choose Files` button and select the CSV file you want to upload.
+
+8. Click on the `Send` button to send the request.
+
+You should see the response from the server in the lower part of the window. If the file was uploaded successfully, you should see a success message in the response.
+
+
+## CSV File Formats
+
+The application expects CSV files to be in specific formats depending on the type of data they contain. The expected formats are defined in the `file_type_mapping` dictionary in the `file_upload.py` file:
+
+- `hired_employees`: This file should contain columns for `id`, `name`, `datetime`, `department_id`, and `job_id`. The `id`, `department_id`, and `job_id` should be integers, and `name` should be a string. The `datetime` should be a string in the format `%Y-%m-%dT%H:%M:%SZ`. Missing `job_id` values will be replaced with 0.
+
+- `departments`: This file should contain columns for `id` and `department`. The `id` should be an integer and `department` should be a string.
+
+- `jobs`: This file should contain columns for `id` and `job`. The `id` should be an integer and `job` should be a string.
+
+Please ensure that your CSV files conform to these formats before uploading.
