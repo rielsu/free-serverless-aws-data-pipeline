@@ -2,7 +2,6 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { type StageConfig, getConfig } from '../lib/config-builder'
-import { CdkStack } from '../lib/cdk-stack';
 import { DataStack } from '../lib/data-stack'
 import { genericApiStack } from '../lib/api-stack'
 import { DataCatalogStack } from '../lib/data-catalog-stack'
