@@ -119,3 +119,31 @@ The application expects CSV files to be in specific formats depending on the typ
 - `jobs`: This file should contain columns for `id` and `job`. The `id` should be an integer and `job` should be a string.
 
 Please ensure that your CSV files conform to these formats before uploading.
+
+## Querying the Data
+
+Once the data has been uploaded and processed, you can query it using the `/employee-hires` and `/over-mean-employee-hires` endpoints. Both endpoints support pagination.
+
+### Employee Hires Endpoint
+
+The `/employee-hires` endpoint returns a list of employees hired per job in 2021. You can paginate the results using the following query parameters:
+
+- `page_token`: The token for the next page of results.
+- `max_results`: The maximum number of results to return (default is 50).
+
+The URL structure is as follows:
+
+https://yqpmajftzf.execute-api.us-east-2.amazonaws.com/prod/employee-hires?page_token=&max_results=
+
+### Over Mean Employee Hires Endpoint
+
+The `/over-mean-employee-hires` endpoint returns a list of departments that hired more employees than the average. You can paginate the results using the following query parameters:
+
+- `page_token`: The token for the next page of results.
+- `max_results`: The maximum number of results to return (default is 50).
+
+The URL structure is as follows:
+
+https://yqpmajftzf.execute-api.us-east-2.amazonaws.com/prod/over-mean-employee-hires?page_token=&max_results=
+
+Please replace `<PAGE_TOKEN>` and `<MAX_RESULTS>` with the actual values you want to use.
